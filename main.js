@@ -138,7 +138,7 @@ function subtotalCalculation() {
   document.getElementById('subtotalPrice').innerText = '$' + subtotalPrice;
  
   //tax calculation 
-  const tax = subtotalPrice * 0.1;
+  const tax = Math.round(subtotalPrice * 0.1);
   document.getElementById('taxPrice').innerText = tax;
  
   //total calculation
