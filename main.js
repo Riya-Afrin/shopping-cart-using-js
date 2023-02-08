@@ -1,4 +1,4 @@
-/*//! ------cart item adding------
+/*//! ------cart item adding------1st way------
 
    document.getElementById("phoneAddButton").addEventListener('click',function(){    //fetching add button
     const phoneQuantity = document.getElementById("phoneQuantity");               //fetching quantity
@@ -8,8 +8,8 @@
     const phoneNewQuantity = currentPhoneQuantity + 1;                       //increasing by 1
     phoneQuantity.value = phoneNewQuantity;                                //assigning increased value to the input field
     
-    const phoneTotalValue = phoneNewQuantity * 1219;                      //multiplying quantity by amount
-      document.getElementById('phoneTotalValue').innerText = '$' + phoneTotalValue;  //assigning calculated value to totatl amount
+    const phoneTotal = phoneNewQuantity * 1219;                      //multiplying quantity by amount
+      document.getElementById('phoneTotal').innerText = '$' + phoneTotal;  //assigning calculated value to totatl amount
 
     
  })
@@ -22,12 +22,12 @@ document.getElementById('phoneSubstractButton').addEventListener('click', functi
    const phoneNewQuantity = currentPhoneQuantity - 1;
    phoneQuantity.value = phoneNewQuantity;
 
-   const phoneTotalValue = phoneNewQuantity * 1219;
-   document.getElementById('phoneTotalValue').innerText = '$' + phoneTotalValue;
+   const phoneTotal = phoneNewQuantity * 1219;
+   document.getElementById('phoneTotal').innerText = '$' + phoneTotal;
 })
 */
 
-//! -------------------------Using function-----------------------------
+/*//! -------------------------Using function(merging adding & removing)---------------2nd way--------------
 //! ------cart item adding (PHONE)------
 
 document.getElementById("phoneAddButton").addEventListener('click',function(){
@@ -54,8 +54,8 @@ function cartPhoneHandler(bolean) {
 
   phoneQuantity.value = phoneNewQuantity;
 
-  const phoneTotalValue = phoneNewQuantity * 1219;
-  document.getElementById('phoneTotalValue').innerText = '$' + phoneTotalValue;
+  const phoneTotal = phoneNewQuantity * 1219;
+  document.getElementById('phoneTotal').innerText = '$' + phoneTotal;
 }
 
 //! ------cart item adding (CASE)------
@@ -86,10 +86,70 @@ function cartCaseHandler(bolean) {
   document.getElementById('caseTotal').innerText = caseTotalValue;
 
 }
+*/
 
+//! -------------------------Using function(merging both product)---------------3rd way--------------
 
+function cartProductHandler(product, bolean) {
+  const productQuantity = document.getElementById(product + 'Quantity');
+  const currentProductQuantity = inputValue(product);
+//add or remove
+  let productNewQuantity = currentProductQuantity;
+  if(bolean == true){
+    productNewQuantity = currentProductQuantity + 1;
+  }
+  if(bolean == false && currentProductQuantity>0){
+    productNewQuantity = currentProductQuantity - 1;
+  }
 
+  productQuantity.value = productNewQuantity;
+//price
+  let productTotal = 0;
+  if(product == 'phone'){
+    productTotal = productNewQuantity *1219;
+  }
+  if(product == 'case'){
+    productTotal = productNewQuantity *59;
+  }
+  document.getElementById(product + 'Total').innerText = productTotal;
+  
+  subtotalCalculation();  //subtotal function called to connect both function
+}
 
+//! calculating subtotal
+/*function subtotalCalculation() {
+ const phoneInput = document.getElementById('phoneQuantity');
+ const phoneCount = parseFloat(phoneInput.value);
+
+ const caseInput = document.getElementById('caseQuantity');
+ const caseCount = parseFloat(caseInput.value);
+
+ const subtotalPrice = phoneCount*1219 + caseCount*59;
+ document.getElementById('subtotalPrice').innerText = '$' + subtotalPrice;
+ 
+}*/
+//! OR
+function subtotalCalculation() {
+  
+  const phoneCount = inputValue('phone');
+  const caseCount = inputValue('case');
+ 
+  const subtotalPrice = phoneCount*1219 + caseCount*59;
+  document.getElementById('subtotalPrice').innerText = '$' + subtotalPrice;
+ 
+  //tax calculation 
+  const tax = subtotalPrice * 0.1;
+  document.getElementById('taxPrice').innerText = tax;
+ 
+  //total calculation
+  const total = subtotalPrice + tax;
+  document.getElementById('totalPrice').innerText = total;
+ }
+function inputValue(product) {
+  const productInput = document.getElementById(product + 'Quantity');
+ const productCount = parseFloat(productInput.value);
+ return productCount;   //returning so that subtotal can be calculated
+}
 
 // console.log('got it');
 

@@ -29,7 +29,7 @@
 
                 <div class="col-md-5 center-item">
                   <div class="input-group number-spinner">
-                    <button id="phoneSubstractButton" class="btn btn-default">
+                    <button onclick="cartProductHandler('phone', false)" id="phoneSubstractButton" class="btn btn-default">
                       <i class="fas fa-minus"></i>
                     </button>
                     <input
@@ -38,11 +38,11 @@
                       class="form-control text-center"
                       value="1"
                     />
-                    <button id="phoneAddButton" class="btn btn-default">
+                    <button onclick="cartProductHandler('phone', true)" id="phoneAddButton" class="btn btn-default">
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5 id="phoneTotalValue">$1219</h5>
+                  <h5 id="phoneTotal">$1219</h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -56,10 +56,10 @@
                 </div>
                 <div class="col-md-5 center-item">
                   <div class="input-group number-spinner">
-                    <button id="caseSubstractButton" class="btn btn-default"><i class="fas fa-minus"></i>
+                    <button onclick="cartProductHandler('case', false)" id="caseSubstractButton" class="btn btn-default"><i class="fas fa-minus"></i>
                     </button>
                     <input id="caseQuantity" type="text" class="form-control text-center" value="1"/>
-                    <button id="caseAddButton" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                    <button onclick="cartProductHandler('case', true)" id="caseAddButton" class="btn btn-default"><i class="fas fa-plus"></i></button>
                   </div>
                   <h5 id="caseTotal">$59</h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
@@ -76,9 +76,9 @@
                 </div>
 
                 <div class="col-md-4 status">
-                  <h5><span id="subtotalAmount">$1,278</span></h5>
-                  <h5>$<span id="taxAmount">0</span></h5>
-                  <h5>$<span id="totalAmount">1,278</span></h5>
+                  <h5><span id="subtotalPrice">$1,278</span></h5>
+                  <h5>$<span id="taxPrice">0</span></h5>
+                  <h5>$<span id="totalPrice">1,278</span></h5>
                 </div>
               </div>
             </div>
